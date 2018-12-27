@@ -26,15 +26,15 @@
 
   <select id="getUserByAccountPass" parameterType="java.util.Map" resultMap="BaseResultMap">
 
-    SELECT * FROM `sys_user_admin` where is_delete = 0
+    SELECT * FROM sys_user_admin where is_delete = 0
 
-    <if test="account != null and account != ''">
+    <!--<if test="account != null and account != ''">-->
       and account = #{account}
-    </if>
+    <!--</if>-->
 
-    <if test="password != null and password != ''">
+    <!--<if test="password != null and password != ''">-->
       and AES_DECRYPT(password,'eici') = #{password}
-    </if>
+    <!--</if>-->
 
     limit 1
 
@@ -43,7 +43,7 @@
 
   <select id="getUserList" parameterType="java.util.Map" resultMap="BaseResultMap">
 
-    SELECT id,account,password,user_id,user_name,user_real_name,sex,customer_type,avatar_path,is_rozen,rozen_reason,is_delete FROM `sys_user_admin` where is_delete = 0
+    SELECT id,account,AES_DECRYPT(password, 'eici') as password,user_id,user_name,user_real_name,sex,customer_type,avatar_path,is_rozen,rozen_reason,is_delete FROM sys_user_admin where is_delete = 0
 
     <if test="startTime != null and startTime != ''">
       and create_time &gt; #{startTime}
