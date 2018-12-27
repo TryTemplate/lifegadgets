@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eici.lifegadgets.dao.SysFilesMapper">
+  <resultMap id="BaseResultMap" type="com.eici.lifegadgets.model.SysFiles">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="use_id" jdbcType="INTEGER" property="useId" />
+    <result column="use_type" jdbcType="VARCHAR" property="useType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="size" jdbcType="DOUBLE" property="size" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="url_path" jdbcType="VARCHAR" property="urlPath" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eici.lifegadgets.dao.SysUserAdminMapper">
+  <resultMap id="BaseResultMap" type="com.eici.lifegadgets.model.SysUserAdmin">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_real_name" jdbcType="VARCHAR" property="userRealName" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="customer_type" jdbcType="VARCHAR" property="customerType" />
+    <result column="avatar_path" jdbcType="VARCHAR" property="avatarPath" />
+    <result column="is_rozen" jdbcType="VARCHAR" property="isRozen" />
+    <result column="rozen_reason" jdbcType="VARCHAR" property="rozenReason" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="password" jdbcType="VARBINARY" property="password" />
+  </resultMap>
+
+
+  <select id="getUserByAccountPass" parameterType="java.util.Map" resultMap="BaseResultMap">
+
+    SELECT * FROM `sys_user_admin` where is_delete = 0
+
+    <if test="account != null and account != ''">
+      and account = #{account}
+    </if>
+
+    <if test="password != null and password != ''">
+      and AES_DECRYPT(password,'eici') = #{password}
+    </if>
+
+    limit 1
+
+  </select>
+
+
+  <select id="getUserList" parameterType="java.util.Map" resultMap="BaseResultMap">
+
+    SELECT id,account,password,user_id,user_name,user_real_name,sex,customer_type,avatar_path,is_rozen,rozen_reason,is_delete FROM `sys_user_admin` where is_delete = 0
+
+    <if test="startTime != null and startTime != ''">
+      and create_time &gt; #{startTime}
+    </if>
+
+    <if test="endTime != null and endTime != ''">
+      and create_time &lt; #{endTime}
+    </if>
+
+    <if test="isRozen != null and isRozen != ''">
+      and is_rozen = #{isRozen}
+    </if>
+
+    <if test="customerType != null and customerType != ''">
+      and customer_type = #{customerType}
+    </if>
+
+    <if test="isDelete != null and isDelete != ''">
+      and is_delete = #{isDelete}
+    </if>
+
+  </select>
+
+</mapper>

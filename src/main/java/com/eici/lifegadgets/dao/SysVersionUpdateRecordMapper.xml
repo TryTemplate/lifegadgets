@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eici.lifegadgets.dao.SysVersionUpdateRecordMapper">
+  <resultMap id="BaseResultMap" type="com.eici.lifegadgets.model.SysVersionUpdateRecord">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="theme" jdbcType="VARCHAR" property="theme" />
+    <result column="release_date" jdbcType="DATE" property="releaseDate" />
+    <result column="update_details" jdbcType="VARCHAR" property="updateDetails" />
+    <result column="new_version" jdbcType="VARCHAR" property="newVersion" />
+    <result column="original_version" jdbcType="VARCHAR" property="originalVersion" />
+    <result column="important_updates" jdbcType="VARCHAR" property="importantUpdates" />
+    <result column="epoch_version" jdbcType="VARCHAR" property="epochVersion" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+  </resultMap>
+</mapper>
