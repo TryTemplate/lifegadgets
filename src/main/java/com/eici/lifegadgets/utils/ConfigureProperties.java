@@ -14,6 +14,7 @@ public class ConfigureProperties {
     public static String swaggerHost;
     public static Integer interfaceType;
     public static Integer isTest;
+    public static String loginUser;
 
 
     @Value("${swagger_host}")
@@ -29,6 +30,11 @@ public class ConfigureProperties {
     @Value("${is_test}")
     public void setIsTest(Integer isTest) {
         this.isTest = isTest;
+    }
+
+    @Value("${loginUser}")
+    public void setLoginUser(String loginUser) {
+        this.loginUser = loginUser;
     }
 
 

@@ -8,6 +8,8 @@ public interface SysUserAdminServices {
 
     SysUserAdmin getUserByAccountPass(String acc, String pass);
 
-    public List<SysUserAdmin> getUserList(String startTime, String endTime, String isRozen, String customerType, String isDelete);
+    List<SysUserAdmin> getUserList(String startTime, String endTime, String isRozen, String customerType, String isDelete);
+
+    Integer addUser(SysUserAdmin user);
 
 }

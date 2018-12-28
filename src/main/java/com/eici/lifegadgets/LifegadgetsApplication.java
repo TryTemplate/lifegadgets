@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -23,6 +24,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 import java.util.Arrays;
 
 
+@EnableTransactionManagement
 @SpringBootApplication
 @EnableSwagger2
 @ComponentScan(basePackages = {"com.eici.lifegadgets"})

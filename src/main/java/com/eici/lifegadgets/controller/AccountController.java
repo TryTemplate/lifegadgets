@@ -1,10 +1,12 @@
 package com.eici.lifegadgets.controller;
 
+import com.eici.lifegadgets.common.Constants;
 import com.eici.lifegadgets.common.ResultBean;
 import com.eici.lifegadgets.dto.Author;
 import com.eici.lifegadgets.model.SysUserAdmin;
 import com.eici.lifegadgets.redis.RedisHelperImpl;
 import com.eici.lifegadgets.service.SysUserAdminServices;
+import com.eici.lifegadgets.utils.ConfigureProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sun.security.krb5.Config;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -47,22 +50,19 @@ public class AccountController {
             @ApiParam(name = "accType", value = "账号类型", required = false) @RequestParam(value = "accType", required = false) String accType
     ) {
 
-        redisHelper.valuePut("How are you like?", "you!");
-
-        Author author = (Author) session.getAttribute("user");
-
-        System.out.println("-----  " + "How are you like?");
-        System.out.println("-----  " + redisHelper.getValue("How are you like?"));
+//        redisHelper.valuePut("How are you like?", "you!");
 
         SysUserAdmin user = sysUserAdminServices.getUserByAccountPass(account, password);
 
+        session.setAttribute(ConfigureProperties.loginUser, user);
+
         if (user == null) {
-            return new ResultBean(user).setRetCode(1).setRetInfo("用户名或密码错误");
+            return new ResultBean(user).setRetCode(Constants.RET_CODE.FAIL).setRetInfo("用户名或密码错误");
         } else if ("1".equals(user.getIsRozen())) {
-            return new ResultBean(user.getRozenReason()).setRetCode(1).setRetInfo("用户被冻结");
+            return new ResultBean(user.getRozenReason()).setRetCode(Constants.RET_CODE.FAIL).setRetInfo("用户被冻结");
         }
 
-        return new ResultBean(user).setRetCode(0).setRetInfo("成功");
+        return new ResultBean(user).setRetCode(Constants.RET_CODE.SUCCESS).setRetInfo("成功");
     }
 
 
@@ -76,9 +76,15 @@ public class AccountController {
             @ApiParam(name = "isDelete", value = "是否删除", required = false) @RequestParam(value = "isDelete", required = false, defaultValue = "0") String isDelete
     ) {
 
+        SysUserAdmin user = (SysUserAdmin) session.getAttribute(ConfigureProperties.loginUser);
+
+        if (user==null){
+            return new ResultBean(user).setRetCode(Constants.RET_CODE.FAIL).setRetInfo("请登录");
+        }
+
         List<SysUserAdmin> users = sysUserAdminServices.getUserList(startTime, endTime, isRozen, customerType, isDelete);
 
-        return new ResultBean(users).setRetCode(0).setRetInfo("成功");
+        return new ResultBean(users).setRetCode(Constants.RET_CODE.SUCCESS).setRetInfo("成功");
 
     }
 }

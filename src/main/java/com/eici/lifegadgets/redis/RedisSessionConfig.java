@@ -10,7 +10,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 @Configuration
 //maxInactiveIntervalInSeconds 默认是1800秒过期，这里测试修改为60秒
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 18000)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800)
 public class RedisSessionConfig {
 
     @Autowired

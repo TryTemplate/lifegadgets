@@ -1,10 +1,11 @@
 package com.eici.lifegadgets.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "sys_user_admin")
-public class SysUserAdmin {
+public class SysUserAdmin implements Serializable {
     /**
      * 主键id
      */
