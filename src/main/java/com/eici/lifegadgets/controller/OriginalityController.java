@@ -53,9 +53,11 @@ public class OriginalityController {
     public ResultBean<String> getAnswer() {
 
         System.out.println("-----  " + redisHelper.getValue("How are you like?"));
+
+        String ret_data = (String) redisHelper.getValue("How are you like?");
         redisHelper.remove("How are you like?");
 
-        return new ResultBean(redisHelper.getValue("How are you like?")).setRetCode(0).setRetInfo("成功");
+        return new ResultBean(redisHelper.getValue(ret_data)).setRetCode(0).setRetInfo("成功");
 
     }
 }
