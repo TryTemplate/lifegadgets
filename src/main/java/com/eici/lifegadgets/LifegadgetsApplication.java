@@ -62,7 +62,8 @@ public class LifegadgetsApplication {
     @Bean
     public Docket webAPI() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .host(ConfigureProperties.swaggerHost)
+                .enable(ConfigureProperties.isShowSwaggerUi)
+                .host(ConfigureProperties.isTest.equals(0) ? ConfigureProperties.swaggerHost : ConfigureProperties.swaggerTestHost)
                 .groupName("Tester demo")
                 .apiInfo(apiInfo())
                 .select()
@@ -73,6 +74,7 @@ public class LifegadgetsApplication {
     }
 
     private ApiInfo apiInfo() {
+        String  hj =  ConfigureProperties.isTest.equals(0) ? "Produce" : "Test";
         return new ApiInfoBuilder()
                 .title("Eici Api")
                 .termsOfServiceUrl("http://localhost/")

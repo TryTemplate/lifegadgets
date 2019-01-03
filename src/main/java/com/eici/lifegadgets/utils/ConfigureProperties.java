@@ -8,18 +8,25 @@ import org.springframework.stereotype.Component;
  * @author liujingguang
  */
 @Component
-@PropertySource(value = {"classpath:configure-dev.properties"})
+@PropertySource(value = {"classpath:configure-pro.properties"})
 public class ConfigureProperties {
 
     public static String swaggerHost;
+    public static String swaggerTestHost;
     public static Integer interfaceType;
     public static Integer isTest;
     public static String loginUser;
+    public static boolean isShowSwaggerUi;
 
 
     @Value("${swagger_host}")
     public void setSwaggerHost(String swaggerHost) {
         this.swaggerHost = swaggerHost;
+    }
+
+    @Value("${swagger_test_host}")
+    public void setSwaggerTestHost(String swaggerTestHost) {
+        this.swaggerTestHost = swaggerTestHost;
     }
 
     @Value("${interface_type}")
@@ -37,5 +44,8 @@ public class ConfigureProperties {
         this.loginUser = loginUser;
     }
 
-
+    @Value("${is_show_swagger_ui}")
+    public void setIsShowSwaggerUi(boolean isShowSwaggerUi) {
+        this.isShowSwaggerUi = isShowSwaggerUi;
+    }
 }
