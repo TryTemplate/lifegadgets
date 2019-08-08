@@ -20,8 +20,8 @@ public class SysUserAdminServicesImpl implements SysUserAdminServices {
      * @param pass
      * @return
      */
-    public SysUserAdmin getUserByAccountPass(String acc, String pass) {
-        return sysUserAdminMapper.getUserByAccountPass(acc, pass);
+    public SysUserAdmin getUserByAccountPass(String acc, String pass, String accType) {
+        return sysUserAdminMapper.getUserByAccountPass(acc, pass, accType);
     }
 
     /**

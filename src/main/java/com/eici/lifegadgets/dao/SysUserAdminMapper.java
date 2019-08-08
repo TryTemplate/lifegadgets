@@ -17,7 +17,7 @@ public interface SysUserAdminMapper extends Mapper<SysUserAdmin> {
      * @param pass
      * @return
      */
-    SysUserAdmin getUserByAccountPass(@Param("account") String acc, @Param("password") String pass);
+    SysUserAdmin getUserByAccountPass(@Param("account") String acc, @Param("password") String pass, @Param("customerType") String accType);
 
     /**
      * 多条件查询集合

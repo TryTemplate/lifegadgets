@@ -47,14 +47,12 @@ public class AccountController {
     @ApiOperation(value = "用户名密码登录")
     @PostMapping("loginByPassword.htm")
     public ResultBean<SysUserAdmin> loginByPassword(
-            @ApiParam(name = "account", value = "账号", required = false) @RequestParam(value = "account", required = false) String account,
-            @ApiParam(name = "password", value = "密码", required = false) @RequestParam(value = "password", required = false) String password,
-            @ApiParam(name = "accType", value = "账号类型", required = false) @RequestParam(value = "accType", required = false) String accType
+            @ApiParam(name = "account", value = "账号", required = true) @RequestParam(value = "account", required = true) String account,
+            @ApiParam(name = "password", value = "密码", required = true) @RequestParam(value = "password", required = true) String password,
+            @ApiParam(name = "accType", value = "账号类型 1.用户 2.后台管理", required = false) @RequestParam(value = "accType", defaultValue = "1", required = false) String accType
     ) {
 
-//        redisHelper.valuePut("How are you like?", "you!");
-
-        SysUserAdmin user = sysUserAdminServices.getUserByAccountPass(account, password);
+        SysUserAdmin user = sysUserAdminServices.getUserByAccountPass(account, password, accType);
 
         session.setAttribute(ConfigureProperties.loginUser, user);
 
@@ -71,8 +69,8 @@ public class AccountController {
     @ApiOperation(value = "获取所有用户/账号信息")
     @PostMapping("getUserList.htm")
     public ResultBean<PageInfo<SysUserAdmin>> loginByPassword(
-            @ApiParam(name = "startTime", value = "开始注册时间", required = false) @RequestParam(value = "startTime", required = false) String startTime,
-            @ApiParam(name = "endTime", value = "结束注册时间", required = false) @RequestParam(value = "endTime", required = false) String endTime,
+            @ApiParam(name = "startTime", value = "注册时间区间-开始", required = false) @RequestParam(value = "startTime", required = false) String startTime,
+            @ApiParam(name = "endTime", value = "注册时间区间-结束", required = false) @RequestParam(value = "endTime", required = false) String endTime,
             @ApiParam(name = "isRozen", value = "是否冻结 0.正常 1.冻结", required = false) @RequestParam(value = "isRozen", required = false) String isRozen,
             @ApiParam(name = "customerType", value = "账号类型 1.用户 1.后台管理员", required = false) @RequestParam(value = "customerType", required = false) String customerType,
             @ApiParam(name = "isDelete", value = "是否删除", required = false) @RequestParam(value = "isDelete", required = false, defaultValue = "0") String isDelete,

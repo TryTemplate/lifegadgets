@@ -36,6 +36,10 @@
       and AES_DECRYPT(password,'eici') = #{password}
     <!--</if>-->
 
+    <if test="customerType != null and customerType != ''">
+      and customer_type = #{customerType}
+    </if>
+
     limit 1
 
   </select>

@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,7 +64,7 @@ public class LifegadgetsApplication {
     public Docket webAPI() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .enable(ConfigureProperties.isShowSwaggerUi)
-                .host(ConfigureProperties.isTest.equals(0) ? ConfigureProperties.swaggerHost : ConfigureProperties.swaggerTestHost)
+//                .host(ConfigureProperties.isTest.equals(0) ? ConfigureProperties.swaggerHost : ConfigureProperties.swaggerTestHost)
                 .groupName("Tester demo")
                 .apiInfo(apiInfo())
                 .select()

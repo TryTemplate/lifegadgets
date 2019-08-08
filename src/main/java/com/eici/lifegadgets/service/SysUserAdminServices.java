@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SysUserAdminServices {
 
-    SysUserAdmin getUserByAccountPass(String acc, String pass);
+    SysUserAdmin getUserByAccountPass(String acc, String pass, String accType);
 
     List<SysUserAdmin> getUserList(String startTime, String endTime, String isRozen, String customerType, String isDelete);
 

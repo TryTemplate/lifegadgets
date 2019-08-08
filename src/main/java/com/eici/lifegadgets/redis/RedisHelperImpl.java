@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service("RedisHelper")
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds=60)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60)
 public class RedisHelperImpl<HK, T> implements RedisHelper<HK, T> {
     // 在构造器中获取redisTemplate实例, key(not hashKey) 默认使用String类型
     private RedisTemplate<String, T> redisTemplate;

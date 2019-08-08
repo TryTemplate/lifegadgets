@@ -42,7 +42,7 @@ public class OriginalityController {
 
         redisHelper.valuePut("How are you like?", "you!");
 
-        System.out.println("-----  " + "redisHelper.valuePut(\"How are you like?\", \"you!\");");
+        LOG.info("-----  " + "redisHelper.valuePut(\"How are you like?\", \"you!\");");
 
         return new ResultBean("How are you like?").setRetCode(0).setRetInfo("成功");
     }
@@ -52,7 +52,7 @@ public class OriginalityController {
     @PostMapping("getAnswer.htm")
     public ResultBean<String> getAnswer() {
 
-        System.out.println("-----  " + redisHelper.getValue("How are you like?"));
+        LOG.info("-----  " + redisHelper.getValue("How are you like?"));
 
         String ret_data = (String) redisHelper.getValue("How are you like?");
         redisHelper.remove("How are you like?");
